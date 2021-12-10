@@ -207,7 +207,7 @@ function updateStream(country_select) {
     });
 }
 
-// ------- sunburst js code (it's really messy right now!!) -------
+// ------- sunburst js code  -------
 
 groupBy = function (xs, key) {
     return xs.reduce(function (rv, x) {
@@ -389,20 +389,6 @@ function update_sunburst(y_select, c_select) {
                     } else {
                         return color_d;
                     }
-                })
-                .on("click", function (d) {
-                    if (this.id != "selected") {
-                        d3.select(this).attr("id", "selected");
-                        // .style("fill", "red");
-                    } else {
-                        color_d = color(d.value);
-
-                        if (d.depth == 2) {
-                            color_d = shadeColor(color_d, 20);
-                        }
-                        d3.select(this).attr("r", 5.5).style("fill", color_d);
-                        d3.select(this).attr("id", "");
-                    }
                 });
 
             g.selectAll(".node")
@@ -422,12 +408,16 @@ function update_sunburst(y_select, c_select) {
                 .attr("dx", function (d) {
                     if (d.depth == 2) {
                         return "-10";
-                    } else {
+                    } else if (d.depth == 1) {
                         return "-50";
                     }
                 })
                 .attr("dy", ".5em")
                 .on("mouseover", function (d) {
+                    if (d.depth == 1) {
+                        length = this.getComputedTextLength();
+                        console.log(length);
+                    }
                     if (this.id != "selected") {
                         d3.select(this).style("cursor", "pointer");
                         color_d = color(d.value);
@@ -469,7 +459,15 @@ function update_sunburst(y_select, c_select) {
                 .style("visibility", function (d) {
                     length = this.getComputedTextLength();
                     box = this.parentNode.getBBox();
-                    return length > 120 || d.value < 190 ? "hidden" : "visible";
+                    if (d.depth == 1) {
+                        percent = d.value / d.parent.value;
+                        return length > 110 || percent < 0.02
+                            ? "hidden"
+                            : "visible";
+                    } else if (d.depth == 2) {
+                        percent = d.value / d.parent.parent.value;
+                        return percent < 0.02 ? "hidden" : "visible";
+                    }
                 });
         } else {
             d3.select("#sunburst").attr("height", "20px");
