@@ -1,0 +1,372 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+/*=============== VARIABLES CSS ===============*/
+:root {
+    --header-height: 3rem;
+    /*========== Colors ==========*/
+    --hue: 45;
+    --sat: 98%;
+    --first-color: hsl(var(--hue), var(--sat), 60%);
+    --first-color-light: hsl(var(--hue), var(--sat), 85%);
+    --first-color-lighten: hsl(var(--hue), var(--sat), 80%);
+    --first-color-alt: hsl(var(--hue), var(--sat), 53%);
+    --title-color: hsl(var(--hue), 4%, 15%);
+    --text-color: hsl(var(--hue), 4%, 35%);
+    --text-color-light: hsl(var(--hue), 4%, 65%);
+    --body-color: rgb(221, 226, 231);
+    --container-color: #fff;
+    --scroll-bar-color: hsl(var(--hue), 4%, 85%);
+    --scroll-thumb-color: xhsl(var(--hue), 4%, 75%);
+    /*========== Font and typography ==========*/
+    --body-font: "Poppins", sans-serif;
+    --biggest-font-size: 2rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
+    /*========== Font weight ==========*/
+    --font-semi-bold: 600;
+    --font-bold: 700;
+    /*========== Margenes ==========*/
+    --mb-0-5: 0.5rem;
+    --mb-0-75: 0.75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+
+@media screen and (min-width: 968px) {
+    :root {
+        --biggest-font-size: 3rem;
+        --h2-font-size: 6rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: 0.875rem;
+        --smaller-font-size: 0.813rem;
+    }
+}
+
+/*=============== BASE ===============*/
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: var(--header-height) 0 0 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    transition: 0.5s;
+}
+
+h1,
+h3 {
+    font-weight: var(--font-semi-bold);
+    color: var(--title-color);
+    line-height: 1.5;
+}
+
+h2 {
+    color: rgb(105, 113, 113);
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.section {
+    padding: 4.5rem 0 1rem;
+}
+
+.section__title,
+.section__title-center {
+    font-size: var(--h2-font-size);
+    color: var(--title-color);
+    text-align: center;
+    margin-bottom: var(--mb-1);
+}
+
+.svg__color {
+    fill: var(--first-color);
+}
+
+.svg__blob {
+    fill: var(--first-color-light);
+}
+
+.svg__img {
+    width: 300px;
+    justify-self: center;
+}
+
+/*=============== LAYOUT ===============*/
+.container {
+    max-width: 968px;
+    margin-left: var(--mb-1-5);
+    margin-right: var(--mb-1-5);
+}
+
+/*=============== HEADER ===============*/
+.header {
+    width: 100%;
+    background-color: var(--body-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 767px) {
+}
+
+/*=============== HOME ===============*/
+.home__container {
+    row-gap: 3rem;
+}
+
+.home__title {
+    font-size: var(--biggest-font-size);
+    font-weight: var(--font-bold);
+    margin-bottom: var(--mb-0-75);
+    text-align: center;
+}
+
+.home__description {
+    margin-bottom: var(--mb-2);
+}
+
+.graphs_container {
+    margin-top: 2rem;
+    display: grid;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-gap: 2rem;
+    grid-template-rows: auto;
+
+    grid-template-areas:
+        "map_container map_container map_container map_container map_container"
+        "scatter_container scatter_container scatter_container scatter_container scatter_container"
+        "sunburst_container sunburst_container sunburst_container sunburst_container sunburst_container";
+}
+
+.map_container {
+    grid-area: map_container;
+}
+
+.map_title {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.titles {
+    text-align: left;
+    margin-bottom: 0.9rem;
+    margin-left: 0.3rem;
+    margin-top: 0.9rem;
+    font-size: 0.8rem;
+}
+
+.select-wrapper {
+    width: 11rem;
+    margin: 0 auto;
+}
+
+.select-dropdown-subject {
+    position: relative;
+    border: 0.12rem solid rgb(180, 180, 180);
+    width: 11rem;
+    border-radius: 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(101, 100, 102, 0.3);
+}
+.select-dropdown-subject select {
+    font-size: 0.9rem;
+    font-weight: 200;
+    color: rgb(105, 113, 113);
+    width: 11rem;
+    height: 2.5rem;
+    padding: 8px 24px 8px 10px;
+    border: none;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.select-dropdown-subject select:active,
+.select-dropdown-subject select:focus {
+    outline: none;
+    box-shadow: none;
+}
+.select-dropdown-subject:after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    margin-top: -2px;
+    right: 8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgb(105, 113, 113);
+}
+
+/*=============== MAP ===============*/
+
+.map_card {
+    background-color: #fff;
+    height: 32rem;
+    box-shadow: 0 2px 6px rgba(101, 100, 102, 0.3);
+    border-radius: 2rem;
+    border: 2px solid rgb(196, 196, 196);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 968px;
+}
+
+/*=============== SCATTER ===============*/
+
+.scatter_container {
+    grid-area: scatter_container;
+}
+
+.scatter_card {
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(101, 100, 102, 0.3);
+    border-radius: 2rem;
+    border: 2px solid rgb(196, 196, 196);
+    height: 24rem;
+    max-width: 968px;
+}
+
+/*=============== SUNBURST ===============*/
+
+.sunburst_container {
+    grid-area: sunburst_container;
+}
+
+.sunburst_card {
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(101, 100, 102, 0.3);
+    border-radius: 2rem;
+    border: 2px solid rgb(196, 196, 196);
+    /* height: 40rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 968px;
+}
+.sunburst_card .title {
+    justify-content: center;
+    text-align: center;
+    padding-right: 3px;
+}
+
+/*=============== BUTTONS ===============*/
+.button {
+    display: inline-block;
+    background-color: var(--first-color);
+    color: #1a1a1a;
+    padding: 0.75rem 1.5rem;
+    border-radius: 3rem;
+    font-weight: var(--font-semi-bold);
+    transition: 0.3s;
+}
+
+.button:hover {
+    background-color: var(--first-color-alt);
+}
+
+.button__header {
+    display: none;
+}
+
+.button-link {
+    background: none;
+    padding: 0;
+    color: var(--title-color);
+}
+
+.button-link:hover {
+    background-color: transparent;
+}
+
+.button-flex {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    padding: 0.75rem 1rem;
+}
+
+.button__icon {
+    font-size: 1.5rem;
+}
+
+/*=============== FOOTER ===============*/
+.footer {
+    background-color: rgb(53, 68, 83);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.footer__container {
+    row-gap: 2rem;
+}
+
+.footer__copy {
+    /* margin-top: 6rem; */
+    text-align: center;
+    font-size: var(--smaller-font-size);
+    color: rgb(207, 207, 207);
+}
+
+/*=============== MEDIA QUERIES ===============*/
+/* For small devices */
+@media screen and (max-width: 360px) {
+    .section {
+        padding: 3.5rem 0 1rem;
+    }
+}
+
+/* For medium devices */
+@media screen and (min-width: 576px) {
+    .home__container {
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    body {
+        margin: 0;
+    }
+}
+
+/* For large devices */
+@media screen and (min-width: 968px) {
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

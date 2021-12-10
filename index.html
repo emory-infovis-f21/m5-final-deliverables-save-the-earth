@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+        <!-- Load d3.js -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <script src="https://d3js.org/d3-geo-projection.v3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+        <!-- Load d3-annotation -->
+        <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+        <!--------------- CSS --------------->
+        <link rel="stylesheet" href="assets/css/styles.css" />
+
+        <title>GHG Emissions Visualization</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+            body {
+                font-family: "Poppins", Helvetica, sans-serif;
+                font-size: 12px;
+            }
+
+            .legendByNumbers {
+                font-size: 10px;
+            }
+
+            #map {
+                margin-left: 12rem;
+            }
+            /* 
+            .slider {
+                margin-top: 3rem;
+                margin-bottom: 3rem;
+            } */
+
+            .map_card {
+                margin-bottom: 2rem;
+            }
+
+            /* .slider {
+                margin-bottom: 10rem;
+            } */
+        </style>
+    </head>
+    <body>
+        <!--=============== HEADER ===============-->
+        <header class="header" id="header">
+            <!-- <nav class="nav container">
+                <a href="#" class="nav__logo">GHG Emissions Visualization</a>
+            </nav> -->
+        </header>
+
+        <main class="main">
+            <!--=============== HOME ===============-->
+            <section class="home section" id="home">
+                <div class="home__container container grid">
+                    <div class="home__data">
+                        <h1 class="home__title">GHG Emissions Visualization</h1>
+                    </div>
+                    <div class="graphs_container">
+                        <div class="map_container">
+                            <div class="map_title">
+                                <div class="titles">
+                                    <h2>Worldwide Greenhouse Gas Emissions</h2>
+                                </div>
+                                <!-- <div class="select-wrapper">
+                                    <div class="select-dropdown-subject">
+                                        <select class="" id="major">
+                                            <option class="" value="">
+                                                Worldwide
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div id="tooltip"></div>
+
+                            <div class="map_card">
+                                <svg id="map"></svg>
+                                <div
+                                    style="
+                                        align-items: center;
+                                        display: flex;
+                                        flex-direction: column;
+                                    "
+                                >
+                                    <h2 style="z-index: 3" class="year"></h2>
+                                    <div class="slider" year="1900"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="scatter_container">
+                            <div
+                                class="titles"
+                                style="display: flex; flex-direction: row"
+                            >
+                                <h2>GHG Emissions Distribution:</h2>
+                                <h2
+                                    class="selected_country"
+                                    style="padding-left: 5px"
+                                >
+                                    Country
+                                </h2>
+                            </div>
+                            <div class="scatter_card">
+                                <svg id="stream"></svg>
+                            </div>
+                        </div>
+                        <div class="sunburst_container">
+                            <div
+                                class="titles"
+                                style="display: flex; flex-direction: row"
+                            >
+                                <h2>Emissions By Economic Sector:</h2>
+                                <h2
+                                    class="selected_country"
+                                    style="padding-left: 5px"
+                                >
+                                    Country
+                                </h2>
+                            </div>
+                            <div class="sunburst_card">
+                                <svg id="sunburst"></svg>
+                                <div
+                                    class="infobox"
+                                    style="
+                                        visibility: hidden;
+                                        flex-direction: row;
+                                        display: flex;
+                                        justify-content: center;
+                                    "
+                                >
+                                    <p class="title">place</p>
+                                    <p>
+                                        <strong class="words"> </strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!--=============== FOOTER ===============-->
+        <footer class="footer section">
+            <p class="footer__copy">
+                Team Members: Anna Mola, Christina Chance, Amin El Asery
+            </p>
+        </footer>
+
+        <!--------------- Scroll reveal --------------->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!--------------- Main JS --------------->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
