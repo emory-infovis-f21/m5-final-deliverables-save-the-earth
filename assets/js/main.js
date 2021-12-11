@@ -148,7 +148,7 @@ function updateStream(country_select) {
                     " levels in " +
                     xDate +
                     " were " +
-                    country_data[2018 - xDate][keys[i]] +
+                    d3.format(".1f")(country_data[2018 - xDate][keys[i]]) +
                     " MtCO2e"
             );
             // vertical.style("left", d3.mouse(this)[0] + 8 + "px");
